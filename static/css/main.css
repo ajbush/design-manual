@@ -4860,14 +4860,17 @@ h6 + .a-legend,
     display: none;
   }
   .o-table__stack-on-small td[data-label]:before {
+    margin-bottom: 1.07142857em;
+    font-size: 0.875em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1.25;
+    text-transform: uppercase;
     display: block;
     margin-top: 0;
     margin-bottom: .41666667em;
     content: attr(data-label);
-    font-size: .875em;
-    font-weight: bold;
     line-height: 1.83333333;
-    text-transform: uppercase;
   }
   .o-table__stack-on-small td:last-child {
     margin-bottom: 1.875em;

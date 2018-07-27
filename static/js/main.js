@@ -11,8 +11,6 @@
 
    ========================================================================== */
 
-'use strict';
-
 const assign = require( '../utilities/object-assign' ).assign;
 const bind = require( '../utilities/function-bind' ).bind;
 const classList = require( '../utilities/dom-class-list' );
@@ -27,7 +25,7 @@ const isFunction = require( '../utilities/type-checkers' ).isFunction;
  * necessary methods to properly instantiatie component.
  *
  * @param {HTMLElement} element - The element to set as the base element.
- * @param {Object} attributes -  Hash of attributes to set on base element.
+ * @param {Object} attributes - Hash of attributes to set on base element.
  */
 function AtomicComponent( element, attributes ) {
   this.element = element;
@@ -53,8 +51,8 @@ assign( AtomicComponent.prototype, Events, classList, {
    * Function used to process class modifiers. These should
    * correspond with BEM modifiers.
    *
-   * @param {Object} attributes -  Hash of attributes to set on base element.
-   * @param {Object} atomicComponent -  Base component.
+   * @param {Object} attributes - Hash of attributes to set on base element.
+   * @param {Object} atomicComponent - Base component.
    */
   processModifiers: function() {
     if ( !this.modifiers ) {
@@ -86,9 +84,9 @@ assign( AtomicComponent.prototype, Events, classList, {
    */
   ensureElement: function() {
     if ( !this.element ) { // eslint-disable-line no-negated-condition, inline-comments, max-len
-      var attrs = assign( {}, this.attributes );
+      const attrs = assign( {}, this.attributes );
       attrs.id = this.id || this.u_id;
-      if ( this.className ) attrs['class'] = this.className;
+      if ( this.className ) attrs.class = this.className;
       this.setElement( document.createElement( this.tagName ) );
       this.setElementAttributes( attrs );
     } else {
@@ -113,15 +111,18 @@ assign( AtomicComponent.prototype, Events, classList, {
     return this;
   },
 
+  // TODO Fix complexity issue
+  /* eslint-disable complexity */
   /**
    * Function used to set the cached DOM elements.
    *
    * @returns {Object} Hash of event names and cached elements.
    */
   setCachedElements: function() {
-    var key;
-    var ui = assign( {}, this.ui );
-    var element;
+    const ui = assign( {}, this.ui );
+    let key;
+    let element;
+
     for ( key in ui ) {
       if ( ui.hasOwnProperty( key ) ) {
         element = this.element.querySelectorAll( ui[key] );
@@ -138,6 +139,7 @@ assign( AtomicComponent.prototype, Events, classList, {
 
     return ui;
   },
+  /* eslint-enable complexity */
 
   /**
    * Function used to remove the base element from the DOM
@@ -160,7 +162,7 @@ assign( AtomicComponent.prototype, Events, classList, {
   /**
    * Function used to set the attributes on an element.
    *
-   * @param {Object} attributes -  Hash of attributes to set on base element.
+   * @param {Object} attributes - Hash of attributes to set on base element.
    */
   setElementAttributes: function( attributes ) {
     let property;
@@ -172,6 +174,8 @@ assign( AtomicComponent.prototype, Events, classList, {
     }
   },
 
+  // TODO Fix complexity issue
+  /* eslint-disable complexity */
   /**
    * Function used to up event delegation on the base element.
    * Using Dom-delegate library to enable this functionality.
@@ -180,31 +184,35 @@ assign( AtomicComponent.prototype, Events, classList, {
    * @returns {AtomicComponent} An instance.
    */
   delegateEvents: function( events ) {
-    var key;
-    var method;
-    var match;
-    var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+    const delegateEventSplitter = /^(\S+)\s*(.*)$/;
+    let key;
+    let method;
+    let match;
 
     events = events || ( events = this.events );
     if ( !events ) return this;
     this.undelegateEvents();
     this._delegate = new Delegate( this.element );
     for ( key in events ) {
-      method = events[key];
-      if ( isFunction( this[method] ) ) method = this[method];
-      if ( !method ) continue;
-      match = key.match( delegateEventSplitter );
-      this.delegate( match[1], match[2], bind( method, this ) );
+      if ( {}.hasOwnProperty.call( events, key ) ) {
+        method = events[key];
+        if ( isFunction( this[method] ) ) method = this[method];
+        if ( method ) {
+          match = key.match( delegateEventSplitter );
+          this.delegate( match[1], match[2], bind( method, this ) );
+        }
+      }
     }
     this.trigger( 'component:bound' );
 
     return this;
   },
+  /* eslint-enable complexity */
 
   /**
    * Function used to set the attributes on an element.
    *
-   * @param {string} eventName -  Event in which to listen for.
+   * @param {string} eventName - Event in which to listen for.
    * @param {string} selector - CSS selector.
    * @param {Function} listener - Callback for event.
    * @returns {AtomicComponent} An instance.
@@ -248,12 +256,12 @@ assign( AtomicComponent.prototype, Events, classList, {
  * Function used to set the attributes on an element.
  * and unbind events.
  *
- * @param {Object} attributes -  Hash of attributes to set on base element.
+ * @param {Object} attributes - Hash of attributes to set on base element.
  * @returns {Function} Extended child constructor function.
  */
 AtomicComponent.extend = function( attributes ) {
 
- /**
+/**
  * Function used as constructor in order to establish inheritance
  * chain.
  * @returns {AtomicComponent} An instance.
@@ -285,11 +293,11 @@ AtomicComponent.extend = function( attributes ) {
  * @returns {Array} List of AtomicComponent instances.
  */
 AtomicComponent.init = function() {
-  var elements = document.querySelectorAll( this.selector );
-  var element;
-  var components = [];
+  const elements = document.querySelectorAll( this.selector );
+  const components = [];
+  let element;
 
-  for ( var i = 0; i < elements.length; ++i ) {
+  for ( let i = 0; i < elements.length; ++i ) {
     element = elements[i];
     if ( element.hasAttribute( 'data-bound' ) === false ) {
       components.push( new this( element ) );
@@ -301,15 +309,13 @@ AtomicComponent.init = function() {
 
 module.exports = AtomicComponent;
 
-},{"../mixins/Events":3,"../utilities/dom-class-list":5,"../utilities/function-bind":7,"../utilities/object-assign":8,"../utilities/type-checkers":11,"dom-delegate":20}],2:[function(require,module,exports){
+},{"../mixins/Events":3,"../utilities/dom-class-list":5,"../utilities/function-bind":7,"../utilities/object-assign":8,"../utilities/type-checkers":10,"dom-delegate":27}],2:[function(require,module,exports){
 /* ==========================================================================
    Organism
 
    Organism Atomic Component
 
    ========================================================================== */
-
-'use strict';
 
 const AtomicComponent = require( './AtomicComponent' );
 const TYPES = require( '../utilities/config' ).TYPES;
@@ -327,8 +333,6 @@ module.exports = Organism;
 
    Mixin to add basic event callback functionality.
    ========================================================================== */
-
-'use strict';
 
 const Events = {
 
@@ -361,7 +365,7 @@ const Events = {
     return this;
   },
 
-   /**
+  /**
    * Function used to trigger events that exist on the event stack.
    *
    * @param {string} eventName - The name of the event to trigger.
@@ -372,7 +376,7 @@ const Events = {
     if ( events.hasOwnProperty( eventName ) === false ) {
       return this;
     }
-    for ( var i = 0, len = events[eventName].length; i < len; i++ ) {
+    for ( let i = 0, len = events[eventName].length; i < len; i++ ) {
       this.events[eventName][i].apply( this, arguments );
     }
 
@@ -387,8 +391,6 @@ module.exports = Events;
    Atomic configurations and constants
 
    ========================================================================== */
-
-'use strict';
 
 // Bit values intended to be used for bit inversion.
 const DIRECTIONS = {
@@ -407,8 +409,10 @@ const TYPES = {
   ATOM:     5
 };
 
-// Atomic Prefixes used for standardizing naming conventions
-// across HTML, CSS, and Javascript.
+/*
+  Atomic Prefixes used for standardizing naming conventions
+  across HTML, CSS, and Javascript.
+*/
 const PREFIXES = {
   PAGE:     'p-',
   TEMPLATE: 't-',
@@ -417,6 +421,7 @@ const PREFIXES = {
   ATOM:     'a-'
 };
 
+/* eslint-disable no-useless-return */
 /**
  * Function used as a non-operational method that
  * is intended to be overriden.
@@ -424,6 +429,7 @@ const PREFIXES = {
  * @returns {undefined}.
  */
 function NO_OP_FUNCTION() { return; }
+/* eslint-enable no-useless-return */
 
 let UNDEFINED;
 
@@ -447,8 +453,6 @@ module.exports = {
    TODO: Integrate with https://github.com/wilsonpage/fastdom.  Refactor to
          eliminate redudant code.
    ========================================================================== */
-
-'use strict';
 
 const hasClassList = 'classList' in document.createElement( '_' );
 
@@ -474,7 +478,7 @@ function addClass( element ) {
   if ( hasClassList ) {
     element.classList.add.apply( element.classList, addClassNamesArray );
   } else {
-    var classes = element.className.split( ' ' );
+    const classes = element.className.split( ' ' );
     addClassNamesArray.forEach( function( name ) {
       if ( classes.indexOf( name ) === -1 ) {
         classes.push( name );
@@ -512,9 +516,9 @@ function removeClass( element ) {
   const removeClassNamesArray = _sliceArgs( arguments );
   if ( hasClassList ) {
     element.classList.remove
-    .apply( element.classList, removeClassNamesArray );
+      .apply( element.classList, removeClassNamesArray );
   } else {
-    var classes = element.className.split( ' ' );
+    const classes = element.className.split( ' ' );
     removeClassNamesArray.forEach( function( className ) {
       if ( className ) {
         classes.splice( classes.indexOf( className ), 1 );
@@ -565,8 +569,8 @@ module.exports = {
 
    ========================================================================== */
 
-'use strict';
-
+// TODO Fix complexity issue
+/* eslint-disable complexity */
 /**
  * Get the nearest parent node of an elementent.
  *
@@ -597,6 +601,7 @@ function closest( element, selector ) {
 
   return null;
 }
+/* eslint-enable complexity */
 
 // Expose public methods.
 module.exports = {
@@ -613,8 +618,6 @@ module.exports = {
      74655c45ad2cd05c002e4802cdd74cba70310f08/src/fnBind.js
 
    ========================================================================== */
-
-'use strict';
 
 /**
  * Function.prototype.bind polyfill.
@@ -651,8 +654,6 @@ module.exports = {
 
    ========================================================================== */
 
-'use strict';
-
 /**
  * @param {object} object - JavaScript object.
  * @returns {boolean} True if object is a plain JavaScript object.
@@ -661,13 +662,15 @@ function _isPlainObject( object ) {
   return Object.prototype.toString.call( object ) === '[object Object]';
 }
 
+// TODO Fix complexity issue
+/* eslint-disable complexity */
 /**
-* Copies properties of all sources to the destination object overriding its own
-* existing properties. When assigning from multiple sources, fields of every
-* next source will override same named fields of previous sources.
-*
-* @param {Object} destination object.
-* @returns {Object} assigned destination object.
+ * Copies properties of all sources to the destination object overriding its own
+ * existing properties. When assigning from multiple sources, fields of every
+ * next source will override same named fields of previous sources.
+ *
+ * @param {Object} destination object.
+ * @returns {Object} assigned destination object.
 */
 function assign( destination ) {
   destination = destination || {};
@@ -687,17 +690,17 @@ function assign( destination ) {
 
   return destination;
 }
+/* eslint-enable complexity */
 
 // Expose public methods.
 module.exports = { assign: assign };
 
 },{}],9:[function(require,module,exports){
-'use strict';
-
 // Required modules.
 const Events = require( '../../mixins/Events.js' );
 const fnBind = require( '../function-bind' ).bind;
 
+/* eslint-disable max-lines-per-function, max-statements */
 /**
  * BaseTransition
  * @class
@@ -712,7 +715,7 @@ const fnBind = require( '../function-bind' ).bind;
  *   The classes to apply to this transition.
  * @returns {BaseTransition} An instance.
  */
-function BaseTransition( element, classes ) { // eslint-disable-line max-statements, no-inline-comments, max-len
+function BaseTransition( element, classes ) {
   const _classes = classes;
   let _dom;
 
@@ -739,8 +742,10 @@ function BaseTransition( element, classes ) { // eslint-disable-line max-stateme
    * @param {HTMLNode} targetElement - The target of the transition.
    */
   function setElement( targetElement ) {
-    // If the element has already been set,
-    // clear the transition classes from the old element.
+    /*
+      If the element has already been set,
+      clear the transition classes from the old element.
+    */
     if ( _dom ) {
       remove();
       animateOn();
@@ -790,8 +795,10 @@ function BaseTransition( element, classes ) { // eslint-disable-line max-stateme
     _dom.style.mozTransitionDuration = '0';
     _dom.style.oTransitionDuration = '0';
     _dom.style.transitionDuration = '0';
-    _dom.removeEventListener( _transitionEndEvent,
-                              _transitionCompleteBinded );
+    _dom.removeEventListener(
+      _transitionEndEvent,
+      _transitionCompleteBinded
+    );
     _transitionCompleteBinded();
     _dom.style.webkitTransitionDuration = '';
     _dom.style.mozTransitionDuration = '';
@@ -807,8 +814,10 @@ function BaseTransition( element, classes ) { // eslint-disable-line max-stateme
     _isAnimating = true;
     // If transition is not supported, call handler directly (IE9/OperaMini).
     if ( _transitionEndEvent ) {
-      _dom.addEventListener( _transitionEndEvent,
-                             _transitionCompleteBinded );
+      _dom.addEventListener(
+        _transitionEndEvent,
+        _transitionCompleteBinded
+      );
       this.trigger( BaseTransition.BEGIN_EVENT, { target: this } );
     } else {
       this.trigger( BaseTransition.BEGIN_EVENT, { target: this } );
@@ -832,6 +841,8 @@ function BaseTransition( element, classes ) { // eslint-disable-line max-stateme
     _isAnimating = false;
   }
 
+  // TODO Fix complexity issue
+  /* eslint-disable complexity */
   /**
    * Search for and remove initial BaseTransition classes that have
    * already been applied to this BaseTransition's target element.
@@ -845,6 +856,7 @@ function BaseTransition( element, classes ) { // eslint-disable-line max-stateme
       }
     }
   }
+  /* eslint-enable complexity */
 
   /**
    * Remove all transition classes, if transition is initialized.
@@ -888,6 +900,8 @@ function BaseTransition( element, classes ) { // eslint-disable-line max-stateme
     return true;
   }
 
+  // TODO Fix complexity issue
+  /* eslint-disable complexity */
   /**
    * @param {HTMLNode} elem
    *   The element to check for support of transition end event.
@@ -916,6 +930,7 @@ function BaseTransition( element, classes ) { // eslint-disable-line max-stateme
     }
     return transition;
   }
+  /* eslint-enable complexity */
 
   // Attach public events.
   this.addEventListener = Events.on;
@@ -933,6 +948,7 @@ function BaseTransition( element, classes ) { // eslint-disable-line max-stateme
 
   return this;
 }
+/* eslint-enable max-lines-per-function, max-statements */
 
 // Public static constants.
 BaseTransition.BEGIN_EVENT = 'transitionBegin';
@@ -942,133 +958,6 @@ BaseTransition.NO_ANIMATION_CLASS = 'u-no-animation';
 module.exports = BaseTransition;
 
 },{"../../mixins/Events.js":3,"../function-bind":7}],10:[function(require,module,exports){
-'use strict';
-
-// Required modules.
-const Events = require( '../../mixins/Events.js' );
-const BaseTransition = require( '../../utilities/transition/BaseTransition' );
-const contains = require( '../../utilities/dom-class-list' ).contains;
-const fnBind = require( '../../utilities/function-bind' ).bind;
-
-// Exported constants.
-const CLASSES = {
-  BASE_CLASS:   'u-expandable-transition',
-  EXPANDED:     'u-expandable-expanded',
-  COLLAPSED:    'u-expandable-collapsed',
-  OPEN_DEFAULT: 'u-expandable-content__onload-open'
-};
-
-/**
- * ExpandableTransition
- * @class
- *
- * @classdesc Initializes new ExpandableTransition behavior.
- *
- * @param {HTMLNode} element
- *   DOM element to apply move transition to.
- * @param {Object} classes
- *   An Object of custom classes to override the base classes Object
- * @returns {ExpandableTransition} An instance.
- */
-function ExpandableTransition( element, classes ) { // eslint-disable-line max-statements, no-inline-comments, max-len
-  const classObject = classes || CLASSES;
-  const _baseTransition = new BaseTransition( element, classObject );
-  let previousHeight;
-
-  /**
-   * @returns {ExpandableTransition} An instance.
-   */
-  function init() {
-    _baseTransition.init();
-    const _transitionCompleteBinded = fnBind( _transitionComplete, this );
-    _baseTransition.addEventListener( BaseTransition.END_EVENT,
-                                      _transitionCompleteBinded );
-
-    if ( contains( element, classObject.OPEN_DEFAULT ) ) {
-      _baseTransition.applyClass( classObject.EXPANDED );
-      element.style.maxHeight = element.scrollHeight + 'px';
-    } else {
-      previousHeight = element.scrollHeight;
-      _baseTransition.applyClass( classObject.COLLAPSED );
-    }
-
-    return this;
-  }
-
-  /**
-   * Handle the end of a transition.
-   */
-  function _transitionComplete() {
-    this.trigger( BaseTransition.END_EVENT, { target: this } );
-    if ( contains( element, classObject.EXPANDED ) &&
-         element.scrollHeight > previousHeight ) {
-      element.style.maxHeight = element.scrollHeight + 'px';
-    }
-  }
-
-  /**
-   * Toggle the expandable
-   * @returns {ExpandableTransition} An instance.
-   */
-  function toggleExpandable() {
-    if ( contains( element, classObject.COLLAPSED ) ) {
-      expand();
-    } else {
-      collapse();
-    }
-
-    return this;
-  }
-
-  /**
-   * Collapses the expandable content
-   * @returns {ExpandableTransition} An instance.
-   */
-  function collapse() {
-    previousHeight = element.scrollHeight;
-    element.style.maxHeight = '0';
-    _baseTransition.applyClass( classObject.COLLAPSED );
-
-    return this;
-  }
-
-  /**
-   * Expands the expandable content
-   * @returns {ExpandableTransition} An instance.
-   */
-  function expand() {
-    element.style.maxHeight = previousHeight + 'px';
-    _baseTransition.applyClass( classObject.EXPANDED );
-
-    return this;
-  }
-
-  // Attach public events.
-  this.addEventListener = Events.on;
-  this.trigger = Events.trigger;
-  this.removeEventListener = Events.off;
-
-  this.animateOff = _baseTransition.animateOff;
-  this.animateOn = _baseTransition.animateOn;
-  this.halt = _baseTransition.halt;
-  this.isAnimated = _baseTransition.isAnimated;
-  this.setElement = _baseTransition.setElement;
-  this.remove = _baseTransition.remove;
-
-  this.init = init;
-  this.toggleExpandable = toggleExpandable;
-  this.collapse = collapse;
-  this.expand = expand;
-
-  return this;
-}
-
-// Public static properties.
-ExpandableTransition.CLASSES = CLASSES;
-
-module.exports = ExpandableTransition;
-
-},{"../../mixins/Events.js":3,"../../utilities/dom-class-list":5,"../../utilities/function-bind":7,"../../utilities/transition/BaseTransition":9}],11:[function(require,module,exports){
 /* ==========================================================================
    Javascript Type Checkers
 
@@ -1080,8 +969,6 @@ module.exports = ExpandableTransition;
    Copyright (c) 2010-2015 Google, Inc. http://angularjs.org
 
    ========================================================================== */
-
-'use strict';
 
 const _toString = Object.prototype.toString;
 
@@ -1195,7 +1082,7 @@ function isDate( value ) {
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is an `Array`.
  */
-var isArray = Array.isArray || function isArray( value ) {
+const isArray = Array.isArray || function isArray( value ) {
   return _toString.call( value ) === '[object Array]';
 };
 
@@ -1214,6 +1101,8 @@ function isFunction( value ) {
   return _toString.call( value ) === '[object Function]';
 }
 
+// TODO Fix complexity issue
+/* eslint-disable complexity, no-mixed-operators */
 /**
  * @name isEmpty
  * @kind function
@@ -1231,7 +1120,7 @@ function isEmpty( value ) {
          value.length <= 0 ||
          ( /^\s*$/ ).test( value );
 }
-
+/* eslint-enable complexity, no-mixed-operators */
 
 // Expose public methods.
 module.exports = {
@@ -1246,11 +1135,12 @@ module.exports = {
   isEmpty:     isEmpty
 };
 
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /* ==========================================================================
    Expandable Organism
    ========================================================================== */
-
+// polyfill for ie9 compatibility
+require( 'classlist-polyfill' );
 
 const domClassList = require(
   'cf-atomic-component/src/utilities/dom-class-list'
@@ -1261,11 +1151,9 @@ const removeClass = domClassList.removeClass;
 const closest = require(
   'cf-atomic-component/src/utilities/dom-closest'
 ).closest;
-const ExpandableTransition = require(
-  'cf-atomic-component/src/utilities/transition/ExpandableTransition'
-);
 const Events = require( 'cf-atomic-component/src/mixins/Events.js' );
 const Organism = require( 'cf-atomic-component/src/components/Organism' );
+const ExpandableTransition = require( './ExpandableTransition' );
 
 const Expandable = Organism.extend( {
   ui: {
@@ -1278,80 +1166,79 @@ const Expandable = Organism.extend( {
   classes: {
     targetExpanded:  'o-expandable_target__expanded',
     targetCollapsed: 'o-expandable_target__collapsed',
+    group:           'o-expandable-group',
     groupAccordion:  'o-expandable-group__accordion'
   },
 
   events: {
-    'click .o-expandable_target': 'onExpandableClick',
-    'click .o-expandable-group__accordion .o-expandable_target': 'onToggleAccordion'
+    'click .o-expandable_target': 'expandableClickHandler'
   },
 
-  transition:      null,
-  accordionEvent:  null,
-  activeAccordion: false,
+  transition:       null,
+  isAccordionGroup: false,
+  activeAccordion:  false,
 
-  initialize:        initialize,
-  accordionClose:    accordionClose,
-  onExpandableClick: onExpandableClick,
-  onToggleAccordion: onToggleAccordion,
-  toggleTargetState: toggleTargetState
+  initialize:             initialize,
+  expandableClickHandler: expandableClickHandler,
+  toggleTargetState:      toggleTargetState
 } );
 
 /**
  * Initialize a new expandable.
  */
 function initialize() {
-  const customClasses = {
-    BASE_CLASS:   'o-expandable_content__transition',
-    EXPANDED:     'o-expandable_content__expanded',
-    COLLAPSED:    'o-expandable_content__collapsed',
-    OPEN_DEFAULT: 'o-expandable_content__onload-open'
-  };
+  const transition = new ExpandableTransition(
+    this.ui.content
+  );
+  this.transition = transition.init();
 
-  if ( contains( this.ui.content, customClasses.OPEN_DEFAULT ) ) {
+  if ( contains( this.ui.content, ExpandableTransition.CLASSES.EXPANDED ) ) {
     addClass( this.ui.target, this.classes.targetExpanded );
   } else {
     addClass( this.ui.target, this.classes.targetCollapsed );
   }
 
-  const transition = new ExpandableTransition(
-    this.ui.content, customClasses
+  const expandableGroup = closest(
+    this.ui.target, '.' + this.classes.group
   );
-  this.transition = transition.init();
 
-  const groupElement = closest(
-    this.ui.target, '.' + this.classes.groupAccordion
-  );
-  if ( groupElement !== null ) {
-    const fn = this.accordionClose.bind( this );
-    Events.on( 'CFAccordionClose', fn );
+  this.isAccordionGroup = expandableGroup !== null &&
+    contains( expandableGroup, this.classes.groupAccordion );
+
+  if ( this.isAccordionGroup ) {
+    Events.on(
+      'accordionActivated',
+      _accordionActivatedHandler.bind( this )
+    );
   }
 }
 
 /**
- * Event handler for when an accordion is closed.
+ * Event handler for when an accordion is activated
  */
-function accordionClose() {
-  if ( this.activeAccordion === true ) {
+function _accordionActivatedHandler() {
+  if ( this.activeAccordion ) {
+    this.transition.toggleExpandable();
+    this.toggleTargetState( this.ui.target );
     this.activeAccordion = false;
-    this.transition.collapse();
   }
 }
 
 /**
  * Event handler for when an expandable is clicked.
  */
-function onExpandableClick() {
+function expandableClickHandler() {
   this.transition.toggleExpandable();
   this.toggleTargetState( this.ui.target );
-}
 
-/**
- * Event handler for when an expandable is clicked as part of an accordion.
- */
-function onToggleAccordion() {
-  Events.trigger( 'CFAccordionClose' );
-  this.activeAccordion = true;
+  if ( this.isAccordionGroup ) {
+    if ( this.activeAccordion ) {
+      this.activeAccordion = false;
+    } else {
+      Events.trigger( 'accordionActivated', { target: this } );
+      this.activeAccordion = true;
+    }
+  }
 }
 
 /**
@@ -1370,15 +1257,162 @@ function toggleTargetState( element ) {
 
 module.exports = Expandable;
 
-},{"cf-atomic-component/src/components/Organism":2,"cf-atomic-component/src/mixins/Events.js":3,"cf-atomic-component/src/utilities/dom-class-list":5,"cf-atomic-component/src/utilities/dom-closest":6,"cf-atomic-component/src/utilities/transition/ExpandableTransition":10}],13:[function(require,module,exports){
-const Expandable = require( './Expandable' );
+},{"./ExpandableTransition":12,"cf-atomic-component/src/components/Organism":2,"cf-atomic-component/src/mixins/Events.js":3,"cf-atomic-component/src/utilities/dom-class-list":5,"cf-atomic-component/src/utilities/dom-closest":6,"classlist-polyfill":25}],12:[function(require,module,exports){
+// Required modules.
+const Events = require( 'cf-atomic-component/src/mixins/Events.js' );
+const BaseTransition = require( 'cf-atomic-component/src/utilities/transition/BaseTransition' );
+const contains = require( 'cf-atomic-component/src/utilities/dom-class-list' ).contains;
 
-// polyfill for ie9 compatibility
-require( 'classlist-polyfill' );
+// Exported constants.
+const CLASSES = {
+  BASE_CLASS:   'o-expandable_content__transition',
+  EXPANDED:     'o-expandable_content__expanded',
+  COLLAPSED:    'o-expandable_content__collapsed',
+  OPEN_DEFAULT: 'o-expandable_content__onload-open'
+};
 
-Expandable.init();
+/* eslint-disable max-lines-per-function */
+/**
+ * ExpandableTransition
+ * @class
+ *
+ * @classdesc Initializes new ExpandableTransition behavior.
+ *
+ * @param {HTMLNode} element
+ *   DOM element to apply move transition to.
+ * @param {Object} classes
+ *   An Object of custom classes to override the base classes Object
+ * @returns {ExpandableTransition} An instance.
+ */
+function ExpandableTransition( element ) {
+  const _baseTransition = new BaseTransition( element, CLASSES );
+  let previousHeight;
 
-},{"./Expandable":12,"classlist-polyfill":18}],14:[function(require,module,exports){
+  /**
+   * @returns {ExpandableTransition} An instance.
+   */
+  function init() {
+    _baseTransition.init();
+    _baseTransition.addEventListener(
+      BaseTransition.END_EVENT,
+      _transitionComplete.bind( this )
+    );
+
+    if ( contains( element, CLASSES.OPEN_DEFAULT ) ) {
+      this.expand();
+    } else {
+      this.collapse();
+    }
+
+    return this;
+  }
+
+  /* istanbul ignore next */
+  /**
+   * Handle the end of a transition.
+   */
+  function _transitionComplete() {
+    if ( contains( element, CLASSES.EXPANDED ) ) {
+      this.dispatchEvent( 'expandEnd', { target: this } );
+
+      if ( element.scrollHeight > previousHeight ) {
+        element.style.maxHeight = element.scrollHeight + 'px';
+      }
+    } else if ( contains( element, CLASSES.COLLAPSED ) ) {
+      this.dispatchEvent( 'collapseEnd', { target: this } );
+    }
+  }
+
+  /**
+   * Toggle the expandable
+   * @returns {ExpandableTransition} An instance.
+   */
+  function toggleExpandable() {
+    if ( contains( element, CLASSES.COLLAPSED ) ) {
+      this.expand();
+    } else {
+      this.collapse();
+    }
+
+    return this;
+  }
+
+  /**
+   * Collapses the expandable content
+   * @returns {ExpandableTransition} An instance.
+   */
+  function collapse() {
+    this.dispatchEvent( 'collapseBegin', { target: this } );
+
+    previousHeight = element.scrollHeight;
+    element.style.maxHeight = '0';
+    _baseTransition.applyClass( CLASSES.COLLAPSED );
+
+    return this;
+  }
+
+  /**
+   * Expands the expandable content
+   * @returns {ExpandableTransition} An instance.
+   */
+  function expand() {
+    this.dispatchEvent( 'expandBegin', { target: this } );
+
+    if ( !previousHeight || element.scrollHeight > previousHeight ) {
+      previousHeight = element.scrollHeight;
+    }
+
+    element.style.maxHeight = previousHeight + 'px';
+    _baseTransition.applyClass( CLASSES.EXPANDED );
+
+    return this;
+  }
+
+  // Attach public events.
+  this.addEventListener = Events.on;
+  this.dispatchEvent = Events.trigger;
+  this.removeEventListener = Events.off;
+
+  this.animateOff = _baseTransition.animateOff;
+  this.animateOn = _baseTransition.animateOn;
+  this.halt = _baseTransition.halt;
+  this.isAnimated = _baseTransition.isAnimated;
+  this.setElement = _baseTransition.setElement;
+  this.remove = _baseTransition.remove;
+
+  this.init = init;
+  this.toggleExpandable = toggleExpandable;
+  this.collapse = collapse;
+  this.expand = expand;
+
+  return this;
+}
+/* eslint-enable max-lines-per-function */
+
+// Public static properties.
+ExpandableTransition.CLASSES = CLASSES;
+
+module.exports = ExpandableTransition;
+
+},{"cf-atomic-component/src/mixins/Events.js":3,"cf-atomic-component/src/utilities/dom-class-list":5,"cf-atomic-component/src/utilities/transition/BaseTransition":9}],13:[function(require,module,exports){
+arguments[4][1][0].apply(exports,arguments)
+},{"../mixins/Events":15,"../utilities/dom-class-list":17,"../utilities/function-bind":19,"../utilities/object-assign":20,"../utilities/type-checkers":21,"dom-delegate":27,"dup":1}],14:[function(require,module,exports){
+arguments[4][2][0].apply(exports,arguments)
+},{"../utilities/config":16,"./AtomicComponent":13,"dup":2}],15:[function(require,module,exports){
+arguments[4][3][0].apply(exports,arguments)
+},{"dup":3}],16:[function(require,module,exports){
+arguments[4][4][0].apply(exports,arguments)
+},{"dup":4}],17:[function(require,module,exports){
+arguments[4][5][0].apply(exports,arguments)
+},{"dup":5}],18:[function(require,module,exports){
+arguments[4][6][0].apply(exports,arguments)
+},{"dup":6}],19:[function(require,module,exports){
+arguments[4][7][0].apply(exports,arguments)
+},{"dup":7}],20:[function(require,module,exports){
+arguments[4][8][0].apply(exports,arguments)
+},{"dup":8}],21:[function(require,module,exports){
+arguments[4][10][0].apply(exports,arguments)
+},{"dup":10}],22:[function(require,module,exports){
 /* ==========================================================================
    Table Organism
    ========================================================================== */
@@ -1401,7 +1435,7 @@ Table.constants.DIRECTIONS = config.DIRECTIONS;
 
 module.exports = Table;
 
-},{"./TableRowLinks":15,"./TableSortable":16,"cf-atomic-component/src/components/Organism":2,"cf-atomic-component/src/utilities/config":4}],15:[function(require,module,exports){
+},{"./TableRowLinks":23,"./TableSortable":24,"cf-atomic-component/src/components/Organism":14,"cf-atomic-component/src/utilities/config":16}],23:[function(require,module,exports){
 /* ==========================================================================
    Table Row Links
 
@@ -1444,7 +1478,7 @@ function onRowLinkClick( event ) {
 
 module.exports = TableRowLinks;
 
-},{"cf-atomic-component/src/utilities/dom-closest":6}],16:[function(require,module,exports){
+},{"cf-atomic-component/src/utilities/dom-closest":18}],24:[function(require,module,exports){
 /* ==========================================================================
    Table Sortablle
 
@@ -1547,7 +1581,8 @@ function updateTable() {
  * Function used to get, sort, and update the table data array.
  *
  * @param {number} columnIndex - The index of the column used for sorting.
- * @returns {Array} TODO: Add description.
+ * @returns {Array} Multidimensional array of column's cell value
+ * and corresponding row element.
  */
 function updateTableData( columnIndex ) {
   let cell;
@@ -1571,7 +1606,7 @@ function updateTableData( columnIndex ) {
 
 /**
  * Function used to update the table DOM.
- * @returns {HTMLNode} TODO: Add description.
+ * @returns {HTMLNode} The table's <tbody> element.
  */
 function updateTableDom() {
   const tableBody = this.ui.tableBody;
@@ -1594,6 +1629,8 @@ function updateTableDom() {
   return tableBody;
 }
 
+// TODO Fix complexity issue
+/* eslint-disable complexity */
 /**
  * Function used to create a function for sorting table data.
  * Passed to Array.sort method.
@@ -1632,6 +1669,7 @@ function tableDataSorter( direction, sortType ) {
     return order;
   };
 }
+/* eslint-enable complexity */
 
 /**
  * Function used as callback for the sortable click event.
@@ -1659,17 +1697,7 @@ function onSortableClick( event ) {
 
 module.exports = TableSortable;
 
-},{"cf-atomic-component/src/utilities/config":4,"cf-atomic-component/src/utilities/dom-closest":6}],17:[function(require,module,exports){
-/* ==========================================================================
-   Table initialization code.
-   ========================================================================== */
-
-
-const Table = require( './Table' );
-
-Table.init();
-
-},{"./Table":14}],18:[function(require,module,exports){
+},{"cf-atomic-component/src/utilities/config":16,"cf-atomic-component/src/utilities/dom-closest":18}],25:[function(require,module,exports){
 /*
  * classList.js: Cross-browser full element.classList implementation.
  * 2014-07-23
@@ -1912,7 +1940,7 @@ if ("document" in window.self) {
   }
 }
 
-},{}],19:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 /*jshint browser:true, node:true*/
 
 'use strict';
@@ -2343,7 +2371,7 @@ Delegate.prototype.destroy = function() {
   this.root();
 };
 
-},{}],20:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 /*jshint browser:true, node:true*/
 
 'use strict';
@@ -2364,7 +2392,7 @@ module.exports = function(root) {
 
 module.exports.Delegate = Delegate;
 
-},{"./delegate":19}],21:[function(require,module,exports){
+},{"./delegate":26}],28:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.3.1
  * https://jquery.com/
@@ -12730,18 +12758,21 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],22:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /* ==========================================================================
    JS
    ========================================================================== */
 
 var $ = require( 'jquery' );
-require( 'cf-expandables' );
-require( 'cf-tables' );
+var Expandable = require( 'cf-expandables/src/Expandable' );
+var Table = require( 'cf-tables/src/Table' );
+
+Expandable.init();
+Table.init();
 
 $(document).ready(function() {
   'use strict';
   $('.cf-icon-external-link').append('<span class="u-visually-hidden"> Links to external site.</span>');
 });
 
-},{"cf-expandables":13,"cf-tables":17,"jquery":21}]},{},[22]);
+},{"cf-expandables/src/Expandable":11,"cf-tables/src/Table":22,"jquery":28}]},{},[29]);
