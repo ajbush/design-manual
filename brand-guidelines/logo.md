@@ -13,7 +13,7 @@ redirect_from: "/identity/logo.html"
 
 <div class="content-67 content-first">
 
-The CFPB logo was designed to symbolize vigilance, transparency, and a consumer focus. Consumers are the foundation and focus of our mission and our logo reflects that. A soft beam of light symbolizes our efforts to illuminate the financial landscape and foster transparency in the marketplace.
+The BCFP logo was designed to symbolize vigilance, transparency, and a consumer focus. Consumers are the foundation and focus of our mission and our logo reflects that. A soft beam of light symbolizes our efforts to illuminate the financial landscape and foster transparency in the marketplace.
 {: class="lead-in"}
 
 </div>
@@ -64,8 +64,8 @@ frames or narrow columns.
 The isolated logo is primarily used for
 internal-facing communications. For
 all external communications, the logo
-needs to be in a lockup with “Consumer
-Financial Protection Bureau” to ensure
+needs to be in a lockup with “Bureau of Consumer
+Financial Protection” to ensure
 clear communication.
 
 </div>
@@ -83,8 +83,7 @@ clear communication.
 The small execution lockup is used
 when the logo needs to scale down to
 less than 0.75” or 54 pixels at 72 dpi. The
-small execution logo allows “Consumer
-Financial Protection Bureau” to remain
+small execution logo allows “Bureau of Consumer Financial Protection” to remain
 legible.
 
 </div>
