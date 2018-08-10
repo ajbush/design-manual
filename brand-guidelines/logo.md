@@ -273,7 +273,7 @@ to the required clear space.
 <div class="content-67 content-last">
 
 <div class="content-50 content-first">
-![Logo with no beam]({{ site.baseurl }}/static/img/logo/Logo23.png "Logo with no beam")
+![Logo with no beam]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-01-solidgreen.png "Logo with no beam")
 </div>
 
 </div><!-- /.content-67 -->
@@ -287,10 +287,10 @@ to the required clear space.
 <div class="content-67 content-last">
 
 <div class="content-50 content-first">
-![Stretched logo]({{ site.baseurl }}/static/img/logo/Logo16.png "Stretched logo")
+![Stretched logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-02-stretched.png "Stretched logo")
 </div>
 <div class="content-50 content-last">
-![Condensed logo]({{ site.baseurl }}/static/img/logo/Logo24.png "Condensed logo")
+![Condensed logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-03-compressed.png "Condensed logo")
 </div>
 
 </div><!-- /.content-67 -->
@@ -304,7 +304,7 @@ to the required clear space.
 <div class="content-67 content-last">
 
 <div class="content-50 content-first">
-![Drop shadow logo]({{ site.baseurl }}/static/img/logo/Logo17.png "Drop shadow logo")
+![Drop shadow logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-04-dropshadow.png "Drop shadow logo")
 </div>
 
 </div><!-- /.content-67 -->
@@ -318,10 +318,10 @@ to the required clear space.
 <div class="content-67 content-last">
 
 <div class="content-50 content-first">
-![Outlined logo]({{ site.baseurl }}/static/img/logo/Logo25.png "Outlined logo")
+![Outlined logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-05-outlined.png "Outlined logo")
 </div>
 <div class="content-50 content-last">
-![Blue logo]({{ site.baseurl }}/static/img/logo/Logo18.png "Blue logo")
+![Blue logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-06-blue.png "Blue logo")
 </div>
 
 </div><!-- /.content-67 -->
@@ -335,10 +335,10 @@ to the required clear space.
 <div class="content-67 content-last">
 
 <div class="content-50 content-first">
-![Rotated logo]({{ site.baseurl }}/static/img/logo/Logo21.png "Rotated logo")
+![Rotated logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-07-turnedleft.png "Rotated logo")
 </div>
 <div class="content-50 content-last">
-![Rotated logo]({{ site.baseurl }}/static/img/logo/Logo22.png "Rotated logo")
+![Rotated logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-08-turnedright.png "Rotated logo")
 </div>
 
 </div><!-- /.content-67 -->
@@ -352,10 +352,10 @@ to the required clear space.
 <div class="content-67 content-last">
 
 <div class="content-50 content-first">
-![Colored box logo]({{ site.baseurl }}/static/img/logo/Logo20.png "Colored box logo")
+![Colored box logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-09-graybackground.png "Colored box logo")
 </div>
 <div class="content-50 content-last">
-![Photo box logo]({{ site.baseurl }}/static/img/logo/Logo19.png "Photo box logo")
+![Photo box logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-10-clouds.png "Photo box logo")
 </div>
 
 </div><!-- /.content-67 -->
