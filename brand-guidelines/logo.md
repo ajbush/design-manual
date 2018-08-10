@@ -252,7 +252,7 @@ to the required clear space.
 <div class="content-67 content-last">
 
 #### Color
-![Complex color backgrounds logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-18-colorbackground.png "Complex color backgrounds logo")
+![Complex color backgrounds logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-18-colorbackground.png "Complex color backgrounds logo") 
 
 #### Pattern
 ![Complex pattern backgrounds logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-19-patternbackground.png "Complex pattern backgrounds logo")
