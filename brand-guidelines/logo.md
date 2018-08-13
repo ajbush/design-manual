@@ -20,7 +20,7 @@ The BCFP logo was designed to symbolize vigilance, transparency, and a consumer 
 
 <div class="content-33 content-last">
 
-![Feature logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-1-intro.png "CFPB Logo")
+![Feature logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-1-intro.png "BCFP Logo")
 
 </div>
 
@@ -335,7 +335,7 @@ to the required clear space.
 <div class="content-67 content-last">
 
 <div class="content-50 content-first">
-![Rotated logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-07-turnedleft.png "Rotated logo")
+![Rotated logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-07-turnedleft.png "Rotated logo" )
 </div>
 <div class="content-50 content-last">
 ![Rotated logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-misuse-08-turnedright.png "Rotated logo")
