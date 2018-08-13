@@ -150,17 +150,6 @@ There should always be ample space around the logo to ensure maximum impact and 
 
 ---
 
-#### Vertical logo clear space
-
-<div class="content-50 content-first">
-![Vertical logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-10-vertical-clear-space.png "Vertical logo clear space")
-</div>
-<div class="content-50 content-last">
-![Vertical logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-11-vertical-clear-space-guides.png "Vertical logo clear space")
-</div>
-
----
-
 #### Horizontal logo clear space
 
 <div class="content-50 content-first">
@@ -168,6 +157,17 @@ There should always be ample space around the logo to ensure maximum impact and 
 </div>
 <div class="content-50 content-last">
 ![Horizontal logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-13-horizontal-clear-space-guides.png "Horizontal logo clear space")
+</div>
+
+---
+
+#### Vertical logo clear space
+
+<div class="content-50 content-first">
+![Vertical logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-10-vertical-clear-space.png "Vertical logo clear space")
+</div>
+<div class="content-50 content-last">
+![Vertical logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-11-vertical-clear-space-guides.png "Vertical logo clear space")
 </div>
 
 </div><!-- /.content-67 -->
