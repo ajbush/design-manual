@@ -20,7 +20,7 @@ The BCFP logo was designed to symbolize vigilance, transparency, and a consumer 
 
 <div class="content-33 content-last">
 
-![Feature logo]({{ site.baseurl }}/static/img/logo/Logo0_@2.png "CFPB Logo")
+![Feature logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-1-intro.png "CFPB Logo")
 
 </div>
 
@@ -38,7 +38,7 @@ and website.
 
 <div class="content-50 content-last">
 
-![Horizontal lockup logo]({{ site.baseurl }}/static/img/logo/Logo1_horizontal-lockup_@2.png "Horizontal lockup logo")
+![Horizontal lockup logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-2-horizontal.png "Horizontal lockup logo")
 
 </div>
 
@@ -53,7 +53,7 @@ frames or narrow columns.
 
 <div class="content-50 content-last">
 
-![Vertical lockup logo]({{ site.baseurl }}/static/img/logo/Logo1_vertical-lockup_@2.png "Vertical lockup logo")
+![Vertical lockup logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-3-vertical.png "Vertical lockup logo")
 
 </div>
 
@@ -72,7 +72,7 @@ clear communication.
 
 <div class="content-50 content-last">
 
-![Isolated logo]({{ site.baseurl }}/static/img/logo/Logo1_isolated-lockup_@2.png "Isolated logo")
+![Isolated logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-4-isolated.png "Isolated logo")
 
 </div>
 
@@ -90,7 +90,7 @@ legible.
 
 <div class="content-67 content-last">
 
-![Small execution logo]({{ site.baseurl }}/static/img/logo/Logo1_small-execution_@2.png "Small execution logo")
+![Small execution logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-5-small.png "Small execution logo")
 
 </div>
 
@@ -108,7 +108,7 @@ This is applicable for the horizontal, vertical, and small execution lockups.
 
 <div class="content-50 content-last">
 
-![Spanish logo]({{ site.baseurl }}/static/img/logo/Logo1_spanish_@2.png "Spanish logo")
+![Spanish logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-6-spanish.png "Spanish logo")
 
 </div>
 
@@ -122,7 +122,7 @@ When the logo is being produced for print formats conditions may not allow for f
 
 <div class="content-50 content-last">
 
-![One color logo]({{ site.baseurl }}/static/img/logo/Logo1_one-color_@2.png "One color logo")
+![One color logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-7-black.png "One color logo")
 
 </div>
 
@@ -142,10 +142,10 @@ There should always be ample space around the logo to ensure maximum impact and 
 #### Isolated logo clear space
 
 <div class="content-50 content-first">
-![Isolated logo clear space]({{ site.baseurl }}/static/img/logo/Logo2.png "Isolated logo clear space")
+![Isolated logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-8-isolated-clear-space.png "Isolated logo clear space")
 </div>
 <div class="content-50 content-last">
-![Isolated logo clear space]({{ site.baseurl }}/static/img/logo/Logo3.png "Isolated logo clear space")
+![Isolated logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-9-isolated-clear-space-guides.png "Isolated logo clear space")
 </div>
 
 ---
@@ -153,10 +153,10 @@ There should always be ample space around the logo to ensure maximum impact and 
 #### Vertical logo clear space
 
 <div class="content-50 content-first">
-![Vertical logo clear space]({{ site.baseurl }}/static/img/logo/Logo4.png "Vertical logo clear space")
+![Vertical logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-10-vertical-clear-space.png "Vertical logo clear space")
 </div>
 <div class="content-50 content-last">
-![Vertical logo clear space]({{ site.baseurl }}/static/img/logo/Logo5.png "Vertical logo clear space")
+![Vertical logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-11-vertical-clear-space-guides.png "Vertical logo clear space")
 </div>
 
 ---
@@ -164,10 +164,10 @@ There should always be ample space around the logo to ensure maximum impact and 
 #### Horizontal logo clear space
 
 <div class="content-50 content-first">
-![Horizontal logo clear space]({{ site.baseurl }}/static/img/logo/Logo6.png "Horizontal logo clear space")
+![Horizontal logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-12-horizontal-clear-space.png "Horizontal logo clear space")
 </div>
 <div class="content-50 content-last">
-![Horizontal logo clear space]({{ site.baseurl }}/static/img/logo/Logo7.png "Horizontal logo clear space")
+![Horizontal logo clear space]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-13-horizontal-clear-space-guides.png "Horizontal logo clear space")
 </div>
 
 </div><!-- /.content-67 -->
@@ -185,7 +185,7 @@ The small execution logo should be used to optimize legibility of the logotype o
 <div class="content-50 content-first">
 #### Desktop scale
 
-![Desktop web scale logo]({{ site.baseurl }}/static/img/logo/Logo9.png "Desktop web scale logo")
+![Desktop web scale logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-14-desktop.png "Desktop web scale logo")
 
 * Lockup: small execution
 * Height: 50px
@@ -196,7 +196,7 @@ The small execution logo should be used to optimize legibility of the logotype o
 <div class="content-50 content-last">
 #### Mobile scale
 
-![Mobile web scale logo]({{ site.baseurl }}/static/img/logo/Logo10.png "Mobile web scale logo")
+![Mobile web scale logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-15-mobile.png "Mobile web scale logo")
 
 * Lockup: small execution
 * Height: 40px
@@ -219,7 +219,7 @@ The horizontal or vertical lockup should be used for most print applications. Th
 <div class="content-50 content-first">
 #### 8.5 x 11” documents
 
-![8.5 x 11” documents print scale horizontal logo]({{ site.baseurl }}/static/img/logo/Logo11.png "8.5 x 11” documents print scale horizontal logo")
+![8.5 x 11” documents print scale horizontal logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-16-horizontal-letter.png "8.5 x 11” documents print scale horizontal logo")
 
 * Lockup: horizontal
 * Height: 0.5”
@@ -230,7 +230,7 @@ The horizontal or vertical lockup should be used for most print applications. Th
 <div class="content-50 content-last">
 #### 8.5 x 11” documents
 
-![8.5 x 11” documents print scale vertical logo]({{ site.baseurl }}/static/img/logo/Logo12.png "8.5 x 11” documents print scale vertical logo")
+![8.5 x 11” documents print scale vertical logo]({{ site.baseurl }}/static/img/logo/bcfp-logo-use-17-vert-letter.png "8.5 x 11” documents print scale vertical logo")
 
 * Lockup: vertical
 * Height: 0.77”
